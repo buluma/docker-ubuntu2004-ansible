@@ -15,7 +15,7 @@ on:
 
 env:
   # TODO: Change variable to your image's name.
-  IMAGE_NAME: image
+  IMAGE_NAME: docker-ubuntu2004-ansible
 
 jobs:
   # Run tests.
