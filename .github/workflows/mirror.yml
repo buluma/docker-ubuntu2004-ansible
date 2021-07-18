@@ -1,63 +1,25 @@
-name: dockerhub-mirror
-
+name: Build and publish a Docker image to ghcr.io
 on:
-  workflow_dispatch:
-    inputs:
-      dockerhub-repo:
-        description: 'DockerHub repository'
-        required: false
-      dest-registry:
-        description: 'Destination registry (eg. ghcr.io)'
-        required: false
-      dest-repo:
-        description: 'Destination repository (eg. username/repo)'
-        required: false
-      dry-run:
-        description: 'Dry run'
-        required: false
-        default: 'false'
 
-permissions:
-  contents: read
-  pull-requests: write
+  # publish on releases, e.g. v2.1.13 (tagged as "2.1.13" - "v" prefix is removed)
+  release:
+    types: [ published ]
+
+  # publish on pushes to the main branch (tagged as "latest")
+  push:
+    branches:
+      - main
 
 jobs:
-  triage:
-    runs-on: ubuntu-latest
+  docker_publish:
+    runs-on: "ubuntu-20.04"
+
     steps:
-      - uses: actions/labeler@v2
+      - uses: actions/checkout@v2
+
+      # https://github.com/marketplace/actions/push-to-ghcr
+      - name: Build and publish a Docker image for ${{ github.repository }}
+        uses: macbre/push-to-ghcr@v2
         with:
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          
-# jobs:
-#   dockerhub-mirror:
-#     runs-on: ubuntu-latest
-#     steps:
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Login to ${{ github.event.inputs.dest-registry }}
-        uses: docker/login-action@v1
-        with:
-          registry: ${{ github.event.inputs.dest-registry }}
-          username: ${{ secrets.DEST_USERNAME }}
-          password: ${{ secrets.DEST_PASSWORD }}
-      - name: Mirror ${{ github.event.inputs.dockerhub-repo }} to ${{ github.event.inputs.dest-registry }}/${{ github.event.inputs.dest-repo }}
-        uses: crazy-max/ghaction-dockerhub-mirror@v1
-        with:
-          dockerhub-username: ${{ secrets.DOCKERHUB_USERNAME }}
-          dockerhub-password: ${{ secrets.DOCKERHUB_TOKEN }}
-#           dockerhub-repo: ${{ github.event.inputs.dockerhub-repo }}
-#           dest-registry: ${{ github.event.inputs.dest-registry }}
-#           dest-repo: ${{ github.event.inputs.dest-repo }}
-#           dry-run: ${{ github.event.inputs.dry-run }}
-          dockerhub-repo: buluma/docker-ubuntu2004-ansible
-          dest-registry: ghcr.io
-          dest-repo: buluma/docker-ubuntu2004-ansible
-          dry-run: ${{ github.event.inputs.dry-run }}
+          image_name: ${{ github.repository }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
