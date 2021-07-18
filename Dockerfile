@@ -1,5 +1,7 @@
-FROM ubuntu:20.04
-LABEL maintainer="Shadow Walker"
+# FROM ubuntu:20.04
+# Test GH Build
+FROM docker.pkg.github.com/buluma/docker-ubuntu2004-ansible/docker-ubuntu2004-ansible:latest
+LABEL maintainer="Michael Buluma"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
