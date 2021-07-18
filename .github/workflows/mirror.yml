@@ -5,13 +5,13 @@ on:
     inputs:
       dockerhub-repo:
         description: 'DockerHub repository'
-        required: true
+        required: false
       dest-registry:
         description: 'Destination registry (eg. ghcr.io)'
-        required: true
+        required: false
       dest-repo:
         description: 'Destination repository (eg. username/repo)'
-        required: true
+        required: false
       dry-run:
         description: 'Dry run'
         required: false
@@ -53,7 +53,11 @@ jobs:
         with:
           dockerhub-username: ${{ secrets.DOCKERHUB_USERNAME }}
           dockerhub-password: ${{ secrets.DOCKERHUB_TOKEN }}
-          dockerhub-repo: ${{ github.event.inputs.dockerhub-repo }}
-          dest-registry: ${{ github.event.inputs.dest-registry }}
-          dest-repo: ${{ github.event.inputs.dest-repo }}
+#           dockerhub-repo: ${{ github.event.inputs.dockerhub-repo }}
+#           dest-registry: ${{ github.event.inputs.dest-registry }}
+#           dest-repo: ${{ github.event.inputs.dest-repo }}
+#           dry-run: ${{ github.event.inputs.dry-run }}
+          dockerhub-repo: buluma/docker-ubuntu2004-ansible
+          dest-registry: ghcr.io
+          dest-repo: buluma/docker-ubuntu2004-ansible
           dry-run: ${{ github.event.inputs.dry-run }}
