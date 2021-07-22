@@ -36,4 +36,5 @@ jobs:
           destination-github-username: 'buluma'
           destination-repository-name: 'docker-ubuntu2104-ansible'
           user-email: bulumaknight@gmail.com
+          target-branch: main
 
