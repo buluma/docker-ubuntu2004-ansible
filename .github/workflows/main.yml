@@ -33,7 +33,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-files: '*'
+          source-files: '.*'
           destination-github-username: 'buluma'
           destination-repository-name: 'docker-ubuntu2104-ansible'
           user-email: bulumaknight@gmail.com
