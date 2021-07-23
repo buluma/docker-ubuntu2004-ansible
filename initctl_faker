@@ -1,5 +1,5 @@
 #!/bin/sh
-ALIAS_CMD="$(echo ""$0"" | sed -e 's?/sbin/??')"
+ALIAS_CMD="$(echo "$0" | sed -e 's?/sbin/??')"
 
 case "$ALIAS_CMD" in
     start|stop|restart|reload|status)

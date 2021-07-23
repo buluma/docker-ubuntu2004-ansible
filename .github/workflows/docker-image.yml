@@ -16,7 +16,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag docker-ubuntu2004-ansible:$(date +%s)
-      
+
     - name: Collect docker logs on failure
 #       if: failure()
       uses: jwalton/gh-docker-logs@v1
