@@ -1,4 +1,9 @@
 FROM buluma/ubuntu:20.04
+<<<<<<< Updated upstream
+=======
+# Test GH Build
+# FROM docker.pkg.github.com/buluma/docker-ubuntu2004-ansible:latest
+>>>>>>> Stashed changes
 LABEL maintainer="Michael Buluma"
 
 ARG DEBIAN_FRONTEND=noninteractive
