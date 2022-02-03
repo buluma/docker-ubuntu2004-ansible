@@ -24,6 +24,7 @@ RUN apt-get update \
        debian-archive-keyring \
        openssh-server \
        ruby \
+       needrestart \
        libelf-dev \
        libffi-dev \
        libssl-dev \
