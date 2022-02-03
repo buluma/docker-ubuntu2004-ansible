@@ -13,6 +13,18 @@ RUN apt-get update \
        apt-utils \
        build-essential \
        locales \
+       gnupg \
+       bison \
+       tcpdump \
+       net-tools \
+       screen \
+       bash-completion \
+       telnet \
+       curl \
+       debian-archive-keyring \
+       openssh-server \
+       ruby \
+       libelf-dev \
        libffi-dev \
        libssl-dev \
        libyaml-dev \
