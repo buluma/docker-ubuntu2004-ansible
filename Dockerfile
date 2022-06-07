@@ -2,6 +2,7 @@ FROM buluma/ubuntu:20.04
 # Test GH Build
 # FROM docker.pkg.github.com/buluma/docker-ubuntu2004-ansible:latest
 LABEL maintainer="Michael Buluma"
+LABEL build_date="2022-06-07"
 
 ARG DEBIAN_FRONTEND=noninteractive
 
